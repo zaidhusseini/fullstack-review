@@ -19,21 +19,18 @@ class App extends React.Component {
 
 
     //make AJAX request to server
-    // $.ajax({
-    //   url: //todo,
-    //   contentType: 'text/plain',
-    //   data: term,
-    //   method: 'POST'
-    //   success: function(data){
-    //     console.log('Data sent successfully',)
-    //   },
-    //   error: function(error){
-    //     console.log('you got an error:', error);
-
-    //   }
-
-
-    // });
+    $.ajax({
+      url: 'http://127.0.0.1:1128/repos',
+      contentType: 'text/plain',
+      data: term,
+      method: 'POST',
+      success: function(data){
+        console.log('Data sent successfully',)
+      },
+      error: function(error){
+        console.log('you got an error:', error);
+      }
+    });
 
 
   }
