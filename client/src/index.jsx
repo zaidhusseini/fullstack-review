@@ -11,7 +11,10 @@ class App extends React.Component {
       repos: [],
       show: false
     }
+  }
 
+  componentWillMount(){
+    this.fetchTopRepos(this.setReposToDisplay.bind(this));
   }
 
   search (term) {
@@ -58,8 +61,8 @@ class App extends React.Component {
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)} fetch={this.fetchTopRepos.bind(this)} displayRepos={this.setReposToDisplay.bind(this)} />
-      <h2 className={this.state.show ? "show": "hide"}>Check out the Top 25 Repos</h2>
-      <div className={this.state.show ? "repos": "hide"}>
+      <h2 className={this.state.show ? "show": "show"}>Check out the Top 25 Repos</h2>
+      <div className={this.state.show ? "repos": "show"}>
         <div className= "header cell">Repo ID</div>  
         <div className= "header cell">Repo Name</div>
         <div className= "header cell">Username</div>
