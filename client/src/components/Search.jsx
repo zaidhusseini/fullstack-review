@@ -14,8 +14,8 @@ class Search extends React.Component {
     });
   }
 
-  search() {
-    this.props.onSearch(this.state.term);
+  search(callback) {
+    this.props.onSearch(this.state.term, callback);
   }
 
   render() {
@@ -23,7 +23,7 @@ class Search extends React.Component {
       <h4>Add more repos!</h4>
       Enter a github username: <input value={this.state.term} onChange={this.onChange.bind(this)}/>       
       <button 
-      onClick={()=>{this.search(); setTimeout(()=>this.props.fetch(this.props.displayRepos),200);}}> Add Repos </button>
+      onClick={()=>{this.search(()=>this.props.fetch(this.props.displayRepos));}}> Add Repos </button>
     </div>) 
   }
 }

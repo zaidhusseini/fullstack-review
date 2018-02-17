@@ -17,7 +17,7 @@ class App extends React.Component {
     this.fetchTopRepos(this.setReposToDisplay.bind(this)); 
   }
 
-  search (term) {
+  search (term,callback) {
     console.log(`${term} was searched`);
     // TODO
 
@@ -28,7 +28,8 @@ class App extends React.Component {
       data: term,
       method: 'POST',
       success: function(data){
-        console.log('Data sent successfully',data)
+        console.log('Data sent successfully',data);
+        callback(data);
       },
       error: function(error){
         console.log('you got an error:', error);
