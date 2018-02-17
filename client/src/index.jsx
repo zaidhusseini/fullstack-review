@@ -25,7 +25,7 @@ class App extends React.Component {
       data: term,
       method: 'POST',
       success: function(data){
-        console.log('Data sent successfully',)
+        console.log('Data sent successfully',data)
       },
       error: function(error){
         console.log('you got an error:', error);
