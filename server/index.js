@@ -1,3 +1,5 @@
+require('dotenv').load();
+
 const express = require('express');
 var github = require('../helpers/github')
 let app = express();

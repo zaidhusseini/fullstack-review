@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-
+console.log('here is process', process.env.DB_USERNAME);
 //mongoose.connect('mongodb://localhost/fetcher');
 mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds137246.mlab.com:37246/fetcher`);
+
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
   repo_id: Number,
@@ -15,7 +16,6 @@ let repoSchema = mongoose.Schema({
   created_at: Date,
   updated_at: Date
 });
-//console.log('HERE IS PROCESS',process.env.DB_USERNAME);
 
 let Repo = mongoose.model('Repo', repoSchema);
 
