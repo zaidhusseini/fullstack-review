@@ -1,3 +1,14 @@
 .hide{
   display:none;
 }
+
+.cell{
+  display:inline-block;
+  margin: 8px;
+  width: 120px;
+}
+
+.header{
+  font-weight: bold;
+}
+

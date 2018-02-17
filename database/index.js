@@ -22,7 +22,9 @@ let save = (repos) => {
   // This function should save a repo or repos to
   // the MongoDB
 
-  repos.forEach((repo)=>{
+  //repos.forEach((repo)=>{
+  for(var i=0; i<repos.length; i++){
+   var repo = repos[i];
     var repoToAdd = new Repo({
       repo_id: repo.id,   
       user_id: repo.owner.id,
@@ -45,7 +47,7 @@ let save = (repos) => {
         });
       }
     });
-  });
+  };
 }
 
 //retrieve repos from DB

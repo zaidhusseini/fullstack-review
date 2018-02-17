@@ -59,13 +59,27 @@ class App extends React.Component {
       <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)} fetch={this.fetchTopRepos.bind(this)} displayRepos={this.setReposToDisplay.bind(this)} />
       <h2 className={this.state.show ? "show": "hide"}>Check out the Top 25 Repos</h2>
-      <div className={this.state.show ? "show": "hide"}>Repo ID  Repo Name  Star Gazers  Watchers  Size</div>
-      {this.state.repos.map((repo)=><Repo repoId={repo.repo_id} repoName={repo.repo_name} stargazers={repo.stargazer_count} watchers={repo.watcher_count}/>   )}
+      <div className={this.state.show ? "repos": "hide"}>
+        <div className= "header cell">Repo ID</div>  
+        <div className= "header cell">Repo Name</div>
+        <div className= "header cell">Username</div>
+        <div className= "header cell">Star Gazers</div>
+        <div className= "header cell">Watchers</div>  
+        <div className= "header cell">Size</div>
+        {this.state.repos.map((repo)=><Repo repoId={repo.repo_id} repoName={repo.repo_name} username={repo.user_name} stargazers={repo.stargazer_count} watchers={repo.watcher_count} size={repo.size}/>   )}
+      </div>
     </div>)
   }
 }
 
-var Repo = (props)=> (<div>{props.repoId} {props.repoName} {props.stargazers} {props.watchers}</div>)
+var Repo = (props)=> (<div>
+                        <div className= "cell">{props.repoId}</div>
+                        <div className= "cell">{props.repoName}</div>
+                        <div className= "cell">{props.username}</div>
+                        <div className= "cell">{props.stargazers}</div>
+                        <div className= "cell">{props.watchers}</div>
+                        <div className= "cell">{props.size}</div>
+                      </div>)
 
 
 ReactDOM.render(<App />, document.getElementById('app'));
