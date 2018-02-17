@@ -17,9 +17,12 @@ let getReposByUsername = (username) => {
   };
 
   request(options, function(error, response, body){
-    console.log(JSON.parse(body)[0].id);
+    db.save(JSON.parse(body)); //save repo instance from github
+    //console.log(JSON.parse(body));
   });
 
 }
+
+
 
 module.exports.getReposByUsername = getReposByUsername;

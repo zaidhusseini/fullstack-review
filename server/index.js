@@ -13,7 +13,6 @@ app.post('/repos', function (req, res) {
   // save the repo information in the database
   var username = req.body;
   github.getReposByUsername(username);
-  res.send(req.body);
 });
 
 app.get('/repos', function (req, res) {

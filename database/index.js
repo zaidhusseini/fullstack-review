@@ -13,35 +13,43 @@ let repoSchema = mongoose.Schema({
   created_at: Date,
   updated_at: Date
 
-
 });
+
+// mongoose.connection.once('open', function() {
+//     // we're connected!
+//     console.log('were connected');
+// }
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (repo) => {
+let save = (repos) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
 
-  var repoToAdd = new Repo({
-    repo_id: repo.id,
-    user_id: repo.owner.id,
-    repo_name: repo.name,
-    user_name: repo.owner.login,
-    stargazer_count: repo.stargazers_count,
-    watcher_count: repo.watchers_count,
-    size: repo.size,
-    created_at: repo.created_at,
-    updated_at: repo.updated_at
-  });
+  //document instance
 
-  repoToAdd.save(function(err, data){
-    if (err){
-      return console.error(err);
-    }
-    console.log(data);
-  });
+  repos.forEach((repo)=>{
+    var repoToAdd = new Repo({
+      repo_id: repo.id,   
+      user_id: repo.owner.id,
+      repo_name: repo.name,
+      user_name: repo.owner.login,
+      stargazer_count: repo.stargazers_count,
+      watcher_count: repo.watchers_count,
+      size: repo.size,
+      created_at: repo.created_at,
+      updated_at: repo.updated_at
+    });
 
+    //insert document to db
+    repoToAdd.save(function(err, data){
+      if (err){
+        return console.error(err);
+      }
+      console.log(data);
+    });
+  });
 
 }
 
