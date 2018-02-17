@@ -22,7 +22,7 @@ let save = (repos) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  repos = Array.prototype.slice.call(repos);
+  repos = Array.prototype.slice.call(repos); //convert repos to Array
   repos.forEach((repo)=>{
   //for(var i=0; i<repos.length; i++){
    //var repo = repos[i];
