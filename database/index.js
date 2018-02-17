@@ -12,13 +12,8 @@ let repoSchema = mongoose.Schema({
   size: Number,
   created_at: Date,
   updated_at: Date
-
 });
 
-// mongoose.connection.once('open', function() {
-//     // we're connected!
-//     console.log('were connected');
-// }
 
 let Repo = mongoose.model('Repo', repoSchema);
 
@@ -42,13 +37,17 @@ let save = (repos) => {
       updated_at: repo.updated_at
     });
 
-    //insert document to db
-    repoToAdd.save(function(err, data){
-      if (err){
-        return console.error(err);
+    Repo.find({repo_id:repo.id}, function(err,queryResult){
+       //if no result found, insert document into DB
+      if(queryResult[0] === undefined){
+        repoToAdd.save(function(err, data){
+          if (err){
+            return console.error(err);
+          }
+        });
       }
-      console.log(data);
     });
+   
   });
 
 }
