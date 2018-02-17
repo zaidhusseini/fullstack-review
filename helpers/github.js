@@ -2,7 +2,7 @@ const request = require('request');
 const db = require('../database/index')
 const config = require('../config.js');
 
-let getReposByUsername = (username) => {
+let getReposByUsername = (username, res) => {
   // TODO - Use the request module to request repos for a specific
   // user from the github API
 
@@ -18,10 +18,17 @@ let getReposByUsername = (username) => {
 
   request(options, function(error, response, body){
     db.save(JSON.parse(body)); //save repo instance from github
+    res.send(JSON.parse(body))
   });
 
 }
 
+let getTopRepos = (res)=>{
+
+  db.retrieve(res);
+
+}
 
 
 module.exports.getReposByUsername = getReposByUsername;
+module.exports.getTopRepos = getTopRepos;

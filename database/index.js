@@ -22,8 +22,6 @@ let save = (repos) => {
   // This function should save a repo or repos to
   // the MongoDB
 
-  //document instance
-
   repos.forEach((repo)=>{
     var repoToAdd = new Repo({
       repo_id: repo.id,   
@@ -47,9 +45,20 @@ let save = (repos) => {
         });
       }
     });
-   
   });
+}
 
+//retrieve repos from DB
+let retrieve = (res)=>{
+
+  Repo.find(function(err,queryResult){
+    if(err){
+      console.log('Query Failed', err);
+    } 
+    res.send(queryResult);
+ 
+  });
 }
 
 module.exports.save = save;
+module.exports.retrieve = retrieve;

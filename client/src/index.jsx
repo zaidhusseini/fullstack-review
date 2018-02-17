@@ -17,7 +17,6 @@ class App extends React.Component {
     console.log(`${term} was searched`);
     // TODO
 
-
     //make AJAX request to server
     $.ajax({
       url: 'http://127.0.0.1:1128/repos',
@@ -31,7 +30,20 @@ class App extends React.Component {
         console.log('you got an error:', error);
       }
     });
+  }
 
+  fetchTopRepos(){
+    $.ajax({
+      url:'http://127.0.0.1:1128/repos',
+      contentType: 'application/json',
+      method: 'GET',
+      success: function(data){
+        console.log('Repos Received Successfully', data);
+      },
+      error: function(error){
+        console.log('Could not retrieve Repos', error);
+      }
+    });
 
   }
 
@@ -39,7 +51,7 @@ class App extends React.Component {
     return (<div>
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)}/>
+      <Search onSearch={this.search.bind(this)} fetch={this.fetchTopRepos.bind(this)} />
     </div>)
   }
 }
