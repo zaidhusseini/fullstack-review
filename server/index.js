@@ -22,6 +22,11 @@ app.get('/repos', function (req, res) {
   github.getTopRepos(res);
 });
 
+app.get('/favicon.ico', function(req, res) {
+    res.status(204);
+});
+
+
 let port = 1128;
 
 app.listen(port, function() {
