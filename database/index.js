@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //mongoose.connect('mongodb://localhost/fetcher');
-mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds137246.mlab.com:37246/fetcher`);
+//mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds137246.mlab.com:37246/fetcher`);
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
   repo_id: Number,
