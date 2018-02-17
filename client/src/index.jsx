@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
   componentWillMount(){
-    this.fetchTopRepos(this.setReposToDisplay.bind(this));
+    this.fetchTopRepos(this.setReposToDisplay.bind(this)); 
   }
 
   search (term) {
@@ -23,7 +23,7 @@ class App extends React.Component {
 
     //make AJAX request to server
     $.ajax({
-      url: 'http://127.0.0.1:1128/repos',
+      url: '/repos',
       contentType: 'text/plain',
       data: term,
       method: 'POST',
@@ -38,7 +38,7 @@ class App extends React.Component {
 
   fetchTopRepos(callback){
     $.ajax({
-      url:'http://127.0.0.1:1128/repos',
+      url:'/repos',
       contentType: 'application/json',
       method: 'GET',
       success: function(data){
