@@ -3,6 +3,11 @@ var github = require('../helpers/github')
 let app = express();
 var bodyParser = require('body-parser');
 
+
+app.get('/favicon.ico', function(req, res) {
+    res.status(204);
+});
+
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.text());
 
@@ -22,9 +27,7 @@ app.get('/repos', function (req, res) {
   github.getTopRepos(res);
 });
 
-app.get('/favicon.ico', function(req, res) {
-    res.status(204);
-});
+
 
 
 let port = 1128;
