@@ -59,7 +59,9 @@ let retrieve = (res)=>{
     } 
     res.send(queryResult);
  
-  });
+  })
+  .limit(25)
+  .sort({size:-1});
 }
 
 module.exports.save = save;
