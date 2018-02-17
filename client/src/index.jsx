@@ -66,7 +66,7 @@ class App extends React.Component {
         <div className= "header cell">Star Gazers</div>
         <div className= "header cell">Watchers</div>  
         <div className= "header cell">Size</div>
-        {this.state.repos.map((repo)=><Repo repoId={repo.repo_id} repoName={repo.repo_name} username={repo.user_name} stargazers={repo.stargazer_count} watchers={repo.watcher_count} size={repo.size}/>   )}
+        {this.state.repos.map((repo)=><Repo repoId={repo.repo_id} repoName={repo.repo_name} repoUrl={repo.repo_url} username={repo.user_name} stargazers={repo.stargazer_count} watchers={repo.watcher_count} size={repo.size}/>   )}
       </div>
     </div>)
   }
@@ -74,7 +74,7 @@ class App extends React.Component {
 
 var Repo = (props)=> (<div>
                         <div className= "cell">{props.repoId}</div>
-                        <div className= "cell">{props.repoName}</div>
+                        <div className= "cell"><a href={props.repoUrl} target="_blank">{props.repoName}</a></div>
                         <div className= "cell">{props.username}</div>
                         <div className= "cell">{props.stargazers}</div>
                         <div className= "cell">{props.watchers}</div>

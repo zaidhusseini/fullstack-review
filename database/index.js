@@ -6,6 +6,7 @@ let repoSchema = mongoose.Schema({
   repo_id: Number,
   user_id: Number,
   repo_name: String,
+  repo_url: String,
   user_name: String,
   stargazer_count: Number,
   watcher_count: Number,
@@ -21,14 +22,15 @@ let save = (repos) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-
-  //repos.forEach((repo)=>{
-  for(var i=0; i<repos.length; i++){
-   var repo = repos[i];
+  repos = Array.prototype.slice.call(repos);
+  repos.forEach((repo)=>{
+  //for(var i=0; i<repos.length; i++){
+   //var repo = repos[i];
     var repoToAdd = new Repo({
       repo_id: repo.id,   
       user_id: repo.owner.id,
       repo_name: repo.name,
+      repo_url: repo.html_url,
       user_name: repo.owner.login,
       stargazer_count: repo.stargazers_count,
       watcher_count: repo.watchers_count,
@@ -47,7 +49,7 @@ let save = (repos) => {
         });
       }
     });
-  };
+  });
 }
 
 //retrieve repos from DB
