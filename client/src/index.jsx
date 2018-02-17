@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      repos: []
+      repos: [],
+      show: false
     }
 
   }
@@ -32,28 +33,39 @@ class App extends React.Component {
     });
   }
 
-  fetchTopRepos(){
+  fetchTopRepos(callback){
     $.ajax({
       url:'http://127.0.0.1:1128/repos',
       contentType: 'application/json',
       method: 'GET',
       success: function(data){
         console.log('Repos Received Successfully', data);
+        callback(data);
       },
       error: function(error){
         console.log('Could not retrieve Repos', error);
       }
     });
-
+    this.setState({show:true});
   }
 
-  render () {
+  setReposToDisplay(data){
+    this.setState({repos:data});
+  }
+
+  render() {
     return (<div>
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos}/>
-      <Search onSearch={this.search.bind(this)} fetch={this.fetchTopRepos.bind(this)} />
+      <Search onSearch={this.search.bind(this)} fetch={this.fetchTopRepos.bind(this)} displayRepos={this.setReposToDisplay.bind(this)} />
+      <h2 className={this.state.show ? "show": "hide"}>Check out the Top 25 Repos</h2>
+      <div className={this.state.show ? "show": "hide"}>Repo ID  Repo Name  Star Gazers  Watchers  Size</div>
+      {this.state.repos.map((repo)=><Repo repoId={repo.repo_id} repoName={repo.repo_name} stargazers={repo.stargazer_count} watchers={repo.watcher_count}/>   )}
     </div>)
   }
 }
+
+var Repo = (props)=> (<div>{props.repoId} {props.repoName} {props.stargazers} {props.watchers}</div>)
+
 
 ReactDOM.render(<App />, document.getElementById('app'));
